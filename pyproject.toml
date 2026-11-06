@@ -1,0 +1,17 @@
+[project]
+name = "vin-project"
+version = "0.1.0"
+description = "VIN validator (ISO 3779) with format and checksum verification"
+requires-python = ">=3.10"
+dependencies = [
+    "pytest>=9.2.0",
+    "requests==2.34.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+pythonpath = ["."]
