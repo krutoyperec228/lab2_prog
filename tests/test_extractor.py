@@ -21,11 +21,9 @@ class TestExtraction:
         assert find_vins_in_text(f"vin: {VALID_VIN.lower()}") == [VALID_VIN]
 
     def test_forbidden_char_inside_window(self):
-        # 'I' на позиции 5 внутри 17-символьного окна
         assert find_vins_in_text("1HGCI82633A004352") == []
 
     def test_no_partial_match_inside_alnum_token(self):
-        # Латиница/цифры вокруг — часть более длинного токена
         assert find_vins_in_text("A" + VALID_VIN) == []
         assert find_vins_in_text(VALID_VIN + "B") == []
 
@@ -33,7 +31,6 @@ class TestExtraction:
         "VIN_{}", "{}_old", "_x_{}_y_", "ВИН{}", "VIN: {}",
     ])
     def test_separators_allowed(self, template):
-        # '_', кириллица, двоеточие — разделители, VIN извлекается
         assert find_vins_in_text(template.format(VALID_VIN)) == [VALID_VIN]
 
     def test_empty_text(self):

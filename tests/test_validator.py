@@ -28,11 +28,9 @@ class TestFormat:
         assert is_valid_format(vin) is False, reason
 
     def test_y_on_position_10_is_valid(self):
-        # 'Y' на позиции 10 разрешена
         assert is_valid_format("1HGCM8263YA004352") is True
 
     def test_y_on_position_9_is_invalid(self):
-        # 'Y' на позиции 9 — недопустимый контрольный символ
         assert is_valid_format("1HGCM826YA004352") is False
 
 
@@ -47,7 +45,6 @@ class TestChecksum:
         assert is_valid_with_checksum("1HGCM82633A004353") is False
 
     def test_invalid_control_position(self):
-        # Меняем контрольный символ (позиция 9, индекс 8) с '3' на '1'
         assert is_valid_with_checksum("1HGCM82613A004352") is False
 
     def test_short_circuits_on_bad_format(self):

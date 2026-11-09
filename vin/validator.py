@@ -18,12 +18,7 @@ def is_valid_format(vin: str) -> bool:
 def is_valid_with_checksum(vin: str) -> bool:
     """Полная проверка: формат + контрольная цифра на позиции 9.
 
-    Алгоритм (ISO 3779):
-      1. Каждый символ, кроме контрольного, переводится в число
-         по TRANSLITERATION.
-      2. Умножается на вес своей позиции из WEIGHTS.
-      3. Сумма делится на 11; остаток 10 → 'X', иначе — цифра.
-      4. Сравнивается с символом на позиции 9 (индекс 8).
+    Алгоритм (ISO 3779)
     """
     normalized = _normalize(vin)
     if not VIN_PATTERN.fullmatch(normalized):

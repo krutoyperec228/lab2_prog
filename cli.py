@@ -53,8 +53,8 @@ def run_from_file() -> None:
 
 def main() -> None:
     print("Выберите режим:")
-    print("1 - Проверить один VIN (ввод)")
-    print("2 - Найти VIN на веб-странице (URL)")
+    print("1 - Проверить один VIN")
+    print("2 - Найти VIN на веб-странице")
     print("3 - Найти VIN в файле")
     choice = input("> ").strip()
 

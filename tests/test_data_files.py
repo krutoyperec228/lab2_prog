@@ -19,7 +19,7 @@ def found(text):
     return set(find_vins_in_text(text))
 
 
-# ---------- VIN, которые должны находиться ----------
+# VIN, которые должны находиться
 
 @pytest.mark.parametrize("vin", [
     "1HGCM82633A004352",
@@ -32,19 +32,19 @@ def test_expected_vin_is_found(found, vin):
     assert vin in found, f"{vin} не найден. Найдено: {found}"
 
 
-# ---------- VIN, которые проходят полную проверку ----------
+# VIN, которые проходят полную проверку
 
 @pytest.mark.parametrize("vin", [
     "1HGCM82633A004352",
     "1M8GDM9AXKP042788",
-    "WBA3A5C50DF123456",   # checksum сходится (проверено)
+    "WBA3A5C50DF123456",
 ])
 def test_vin_passes_checksum(found, vin):
     assert vin in found
     assert is_valid_with_checksum(vin), f"{vin} не проходит checksum"
 
 
-# ---------- VIN, которые структурно валидны, но checksum не сходится ----------
+# VIN, которые структурно валидны, но checksum не сходится
 
 @pytest.mark.parametrize("vin", [
     "JH4KA8260MC000000",
@@ -56,7 +56,7 @@ def test_vin_structurally_valid_only(found, vin):
     assert not is_valid_with_checksum(vin)
 
 
-# ---------- Мусор, который НЕ должен находиться ----------
+# Мусор, который НЕ должен находиться
 
 @pytest.mark.parametrize("garbage, reason", [
     ("A1HGCM82633A004352B", "VIN внутри токена — lookaround блокирует"),
@@ -74,7 +74,7 @@ def test_garbage_not_found(found, garbage, reason):
     assert garbage not in found, f"{garbage} ошибочно найден ({reason})"
 
 
-# ---------- Разделители не мешают поиску ----------
+# Разделители не мешают поиску
 
 @pytest.mark.parametrize("vin, separator", [
     ("1HGCM82633A004352", "подчёркивание (VIN_...)"),
