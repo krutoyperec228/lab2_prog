@@ -10,21 +10,21 @@ def print_results(found: list[str]) -> None:
     if not found:
         print("VIN не найдены.")
         return
-    print(f"Найдено потенциальных VIN: {len(found)}")
+    print(f"Найдено VIN: {len(found)}")
     for vin in found:
         if is_valid_with_checksum(vin):
-            print(f"  {vin} (формат + контрольная цифра)")
+            print(f"  {vin}")
         else:
             print(f"  {vin} (формат верный, контрольная цифра не совпадает)")
 
 
 def run_interactive() -> None:
-    print("=== VIN Validator ===")
+    print("VIN Validator")
     vin = input("Введите VIN для проверки: ").strip()
     if is_valid_with_checksum(vin):
-        print("VIN корректен (формат + контрольная цифра).")
+        print("VIN корректен.")
     elif is_valid_format(vin):
-        print("Формат верный, но контрольная цифра не совпадает.")
+        print("Формат верный, контрольная цифра не совпадает.")
     else:
         print("Неверный формат VIN.")
 
